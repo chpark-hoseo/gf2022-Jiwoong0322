@@ -205,3 +205,5 @@ void render()
 
 	SDL_RenderPresent(g_pRenderer);
 }
+
+// 20191184 양지웅
