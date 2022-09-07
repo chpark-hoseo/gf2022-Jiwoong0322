@@ -206,4 +206,4 @@ void render()
 	SDL_RenderPresent(g_pRenderer);
 }
 
-// 20191184 양지웅
+// 20191184 양지웅 실습 커밋 테스트
