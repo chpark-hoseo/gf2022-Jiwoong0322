@@ -9,6 +9,8 @@
 SDL_Window*		g_pWindow = 0;
 SDL_Renderer*	g_pRenderer = 0;
 
+int count = 0;
+
 bool g_bRunning = false;
 
 bool init(const char* title, int xpos, int ypos, int height, int width, int flags);
@@ -26,10 +28,10 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	// *오류 : !g_bRunning이면 g_bRunning이 false여야 하므로 g_bRunning으로 바뀌어야 함.
-	// g_bRunning이 true인 동안 render함수 호출(무한루프)
+	
 	while (g_bRunning)
 	{
+		update();
 		render();
 	}
 
@@ -40,7 +42,11 @@ int main(int argc, char* argv[])
 
 void update()
 {
-
+	// 카운트가 5 이상이 되면 g_bRunning을 false로 변경
+	if (count >= 5)
+	{
+		g_bRunning = false;
+	}
 }
 
 bool init(const char* title, int xpos, int ypos, int height, int width, int flags)
@@ -70,6 +76,8 @@ void render()
 
 	// 색깔 랜덤 바꾸기
 	SDL_SetRenderDrawColor(g_pRenderer, rand() % 256, rand() % 256, rand() % 256, 255);
+	// 색깔이 한번 바뀔 때 마다 count 1 추가
+	count++;
 
 	SDL_RenderPresent(g_pRenderer);
 
