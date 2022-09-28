@@ -31,23 +31,21 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 		return false;
 	}
 
-	{
-		// Texture 생성
-		SDL_Surface* p_TempSurface = SDL_LoadBMP("asset/rider.bmp");
-		m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSuface);
-		SDL_FreeSurface(p_TempSurface);
+	// Texture 생성
+	SDL_Surface* pTempSurface = SDL_LoadBMP("assets/rider.bmp");
+	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
+	SDL_FreeSurface(pTempSurface);
 
-		// 원본상자(m_sourceRectangle)의 너비/높이 설정
-		SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+	// 원본상자(m_sourceRectangle)의 너비/높이 설정
+	SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
 
-		// 대상 상자(m_destinationRectangle)의 너비/높이 설정
-		m_destinationRectangle.w = m_sourceRectangle.w;
-		m_destinationRectangle.h = m_sourceRectangle.h;
+	// 대상 상자(m_destinationRectangle)의 너비/높이 설정
+	m_destinationRectangle.w = m_sourceRectangle.w;
+	m_destinationRectangle.h = m_sourceRectangle.h;
 
-		// 원본상자/대상상자의 위치 설정
-		m_destinationRectangle.x = m_sourceRectangle.x = 0;
-		m_destinationRectangle.y = m_sourceRectangle.y = 0;
-	}
+	// 원본상자/대상상자의 위치 설정
+	m_destinationRectangle.x = m_sourceRectangle.x = 0;
+	m_destinationRectangle.y = m_sourceRectangle.y = 0;
 
 	m_bRunning = true;
 
