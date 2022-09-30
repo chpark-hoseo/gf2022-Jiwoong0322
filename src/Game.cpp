@@ -14,7 +14,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 			if (m_pRenderer != 0)
 			{
-				SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
+				SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 			}
 			else
 			{
@@ -37,15 +37,23 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 	SDL_FreeSurface(pTempSurface);
 
 	// 원본상자(m_sourceRectangle)의 너비/높이 설정
-	SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+	m_sourceRectangle.w = 50;
+	m_sourceRectangle.h = 50;
+
+	// 이 코드는 파일 전체를 가져와서 너비/높이 설정을 해도 전체사진이 나와버림
+	// SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+
+	// 원본상자의 위치 설정
+	m_sourceRectangle.x = 0;
+	m_sourceRectangle.y = 0;
 
 	// 대상 상자(m_destinationRectangle)의 너비/높이 설정
 	m_destinationRectangle.w = m_sourceRectangle.w;
 	m_destinationRectangle.h = m_sourceRectangle.h;
 
-	// 원본상자/대상상자의 위치 설정
-	m_destinationRectangle.x = m_sourceRectangle.x = 0;
-	m_destinationRectangle.y = m_sourceRectangle.y = 0;
+	// 대상상자의 위치 설정
+	m_destinationRectangle.x = 0;
+	m_destinationRectangle.y = 0;
 
 	m_bRunning = true;
 
@@ -74,7 +82,7 @@ bool Game::running()
 void Game::handleEvents()
 {
 	SDL_Event event;
-	if (SDL_PollEvent(&event))
+	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
