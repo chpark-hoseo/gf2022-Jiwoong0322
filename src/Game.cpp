@@ -1,5 +1,7 @@
 #include "Game.h"
 
+SDL_Point center;
+
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
@@ -60,85 +62,85 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 	// 과제 1 머리부분
 	/*
-	// 과제 1 그림 일부분 중 머리부분 랜더링 원본상자 그림 너비/높이 설정
+	// 그림 일부분 중 머리부분 랜더링 원본상자 그림 너비/높이 설정
 	m_sourceRectangle.w = 50;
 	m_sourceRectangle.h = 50;
 
-	// 과제 1 그림 일부분 중 머리부분 랜더링 원본상자 위치 설정
+	// 그림 일부분 중 머리부분 랜더링 원본상자 위치 설정
 	m_sourceRectangle.x = 0;
 	m_sourceRectangle.y = 0;
 
-	// 과제 1 그림 일부분 중 머리부분 랜더링 대상상자 그림 너비/높이 설정
+	// 그림 일부분 중 머리부분 랜더링 대상상자 그림 너비/높이 설정
 	m_destinationRectangle.w = m_sourceRectangle.w;
 	m_destinationRectangle.h = m_sourceRectangle.h;
 
-	// 과제 1 그림 일부분 중 머리부분 랜더링 대상상자 위치 설정
+	// 그림 일부분 중 머리부분 랜더링 대상상자 위치 설정
 	m_destinationRectangle.x = 100;
 	m_destinationRectangle.y = 100;
 	*/
 
 	// 과제 2 다리부분
 	/*
-	// 과제 2 그림 일부분 중 다리부분 랜더링 원본상자 그림 너비/높이 설정
+	// 그림 일부분 중 다리부분 랜더링 원본상자 그림 너비/높이 설정
 	m_sourceRectangle.w = 50;
 	m_sourceRectangle.h = 50;
 
-	// 과제 2 그림 일부분 중 다리부분 랜더링 원본상자 위치 설정
+	// 그림 일부분 중 다리부분 랜더링 원본상자 위치 설정
 	m_sourceRectangle.x = 50;
 	m_sourceRectangle.y = 50;
 
-	// 과제 2 그림 일부분 중 다리부분 랜더링 대상상자 그림 너비/높이 설정
+	// 그림 일부분 중 다리부분 랜더링 대상상자 그림 너비/높이 설정
 	m_destinationRectangle.w = m_sourceRectangle.w;
 	m_destinationRectangle.h = m_sourceRectangle.h;
 
-	// 과제 2 그림 일부분 중 머리부분 랜더링 대상상자 위치 설정
+	// 그림 일부분 중 머리부분 랜더링 대상상자 위치 설정
 	m_destinationRectangle.x = 100;
 	m_destinationRectangle.y = 100;
 	*/
 
 	// 과제 3 전체화면
 	/*
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 그림 너비/높이 설정
+	// 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 그림 너비/높이 설정
 	m_sourceRectangle.w = 480;
 	m_sourceRectangle.h = 480;
 
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 위치설정
+	// 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 위치설정
 	m_sourceRectangle.x = 0;
 	m_sourceRectangle.y = 0;
 
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 그림 너비/높이 설정
+	// 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 그림 너비/높이 설정
 	m_destinationRectangle.w = m_sourceRectangle.w;
 	m_destinationRectangle.h = m_sourceRectangle.h;
 
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 위치설정
+	// 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 위치설정
 	m_destinationRectangle.x = 0;
 	m_destinationRectangle.y = 0;
 	*/
 
 	// 과제 4 예제만들기
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 그림 너비/높이 설정
-	
-	SDL_Point center;
+	/*
+	// SDL_RenderCopyEx 를 사용하기 위한 SDL_Center선언은 위에 전역변수로 선언함.
 
+	// 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 그림 너비/높이 설정
 	m_sourceRectangle.w = 150;
 	m_sourceRectangle.h = 150;
 
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 위치설정
+	// 그림이 화면 전체에 나타나도록 렌더링하기 원본상자 위치설정
 	m_sourceRectangle.x = 0;
 	m_sourceRectangle.y = 0;
 
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 그림 너비/높이 설정
+	// 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 그림 너비/높이 설정
 	m_destinationRectangle.w = m_sourceRectangle.w;
 	m_destinationRectangle.h = m_sourceRectangle.h;
 
-	// 과제 3 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 위치설정
+	// 그림이 화면 전체에 나타나도록 렌더링하기 대상상자 위치설정
 	m_destinationRectangle.x = 50;
 	m_destinationRectangle.y = 50;
 
-	center.x = m_sourceRectangle.x / 2;
-	center.y = m_sourceRectangle.y / 2;
-
-	SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 50, &center ,SDL_FLIP_VERTICAL);
+	// 그림을 회전시키는 중심이 될 점 위치
+	center.x = m_destinationRectangle.w / 2;
+	center.y = m_destinationRectangle.h / 2;
+	*/
 
 	m_bRunning = true;
 
@@ -154,7 +156,7 @@ void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+	SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 10, &center, SDL_FLIP_VERTICAL);
 
 	SDL_RenderPresent(m_pRenderer);
 }
