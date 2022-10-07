@@ -14,7 +14,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 			if (m_pRenderer != 0)
 			{
-				SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+				SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 			}
 			else
 			{
@@ -32,7 +32,12 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 	}
 
 	// Texture 생성
-	SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
+	
+	// SDL_LoadBMP : bmp 이미지파일을 로드함. bmp이외의 파일은 로드하지 못함. 기본적인 이미지 로드함수라고 생각하면 됨.
+	// SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
+
+	// IMG_Load : 이미지 파일을 로드함. bmp파일도 가능하며 SDL_LoadBMP함수에 여러 옵션이 붙은 것이라 이해하면 편함.
+	SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
 	SDL_FreeSurface(pTempSurface);
 
