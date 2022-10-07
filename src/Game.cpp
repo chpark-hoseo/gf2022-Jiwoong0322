@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "TextureManager.h"
+#include <SDL2/SDL_image.h>
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
@@ -31,15 +33,8 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 		return false;
 	}
 
-	// Texture 생성
-	
-	// SDL_LoadBMP : bmp 이미지파일을 로드함. bmp이외의 파일은 로드하지 못함. 기본적인 이미지 로드함수라고 생각하면 됨.
-	// SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
-
-	// IMG_Load : 이미지 파일을 로드함. bmp파일도 가능하며 SDL_LoadBMP함수에 여러 옵션이 붙은 것이라 이해하면 편함.
-	SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
-	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-	SDL_FreeSurface(pTempSurface);
+	// TextureManager.cpp에 있는 load함수를 호출.
+	m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
 
 	// 실습부분
 	// 원본상자(m_sourceRectangle)의 너비/높이 설정
@@ -69,16 +64,23 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 void Game::update()
 {
-	m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
+	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 }
 
-void Game::render()
+//void Game::render()
+//{
+//	SDL_RenderClear(m_pRenderer);
+//
+//	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+//
+//	SDL_RenderPresent(m_pRenderer);
+//}
+
+bool Game::render()
 {
-	SDL_RenderClear(m_pRenderer);
+	m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
 
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
-
-	SDL_RenderPresent(m_pRenderer);
+	m_textureManager.drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
 }
 
 bool Game::running()
