@@ -24,7 +24,19 @@ public:
 private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
+<<<<<<< Updated upstream
 	bool m_bRunning;
 };
 
 #endif // 끝
+=======
+	SDL_Texture* m_pTexture;
+	// 원본 사각형
+	SDL_Rect m_sourceRectangle;
+	// 대상 사각형
+	SDL_Rect m_destinationRectangle;
+	bool m_bRunning = false;
+	bool left = true;
+	bool right = false;
+};
+>>>>>>> Stashed changes

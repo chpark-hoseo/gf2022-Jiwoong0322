@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			1024, 768, SDL_WINDOW_SHOWN);
 
+<<<<<<< Updated upstream
 		if (g_pWindow != 0)
 		{
 			g_pRenderer = SDL_CreateRenderer(g_pWindow, -1, 0);
@@ -69,3 +70,53 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+=======
+	g_game->clean();
+
+	return 0;
+}
+
+//void update()
+//{
+//	// 카운트가 5 이상이 되면 g_bRunning을 false로 변경
+//	if (count >= 5)
+//	{
+//		g_bRunning = false;
+//	}
+//}
+//
+//bool init(const char* title, int xpos, int ypos, int height, int width, int flags)
+//{
+//	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
+//	{
+//		g_pWindow = SDL_CreateWindow(title, xpos, ypos, height, width, flags);
+//
+//		if (g_pWindow != 0)
+//		{
+//			g_pRenderer = SDL_CreateRenderer(g_pWindow, -1, 0);
+//		}
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//
+//	SDL_SetRenderDrawColor(g_pRenderer, 0, 0, 0, 255);
+//
+//	return true;
+//}
+//
+//void render()
+//{
+//	SDL_RenderClear(g_pRenderer);
+//
+//	// 색깔 랜덤 바꾸기
+//	SDL_SetRenderDrawColor(g_pRenderer, rand() % 256, rand() % 256, rand() % 256, 255);
+//	// 색깔이 한번 바뀔 때 마다 count 1 추가
+//	count++;
+//
+//	SDL_RenderPresent(g_pRenderer);
+//
+//	SDL_Delay(1000);
+//}
+>>>>>>> Stashed changes
