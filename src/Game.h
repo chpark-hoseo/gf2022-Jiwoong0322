@@ -9,7 +9,7 @@ public:
 	~Game() { }
 
 	bool init(const char* title, int xpos, int ypos, int height, int width, int flags);
-	bool render();
+	void render();
 	void update();
 	bool running();
 	void handleEvents();

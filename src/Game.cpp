@@ -67,20 +67,15 @@ void Game::update()
 	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 }
 
-//void Game::render()
-//{
-//	SDL_RenderClear(m_pRenderer);
-//
-//	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
-//
-//	SDL_RenderPresent(m_pRenderer);
-//}
-
-bool Game::render()
+void Game::render()
 {
+	SDL_RenderClear(m_pRenderer);
+
 	m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
 
 	m_textureManager.drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
+
+	SDL_RenderPresent(m_pRenderer);
 }
 
 bool Game::running()
