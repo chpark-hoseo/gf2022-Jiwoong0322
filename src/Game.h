@@ -23,7 +23,6 @@ private:
 	SDL_Rect m_sourceRectangle;
 	// 대상 사각형
 	SDL_Rect m_destinationRectangle;
-	TextureManager m_textureManager;
 	int m_currentFrame;
 	bool m_bRunning = false;
 };

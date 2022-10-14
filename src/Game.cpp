@@ -34,7 +34,10 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 	}
 
 	// TextureManager.cpp에 있는 load함수를 호출.
-	m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
+	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+	{
+		return false;
+	}
 
 	// 실습부분
 	// 원본상자(m_sourceRectangle)의 너비/높이 설정
@@ -71,9 +74,9 @@ void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 
-	m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
+	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
 
-	m_textureManager.drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
+	TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
 
 	SDL_RenderPresent(m_pRenderer);
 }
