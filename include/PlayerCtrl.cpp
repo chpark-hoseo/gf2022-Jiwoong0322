@@ -5,7 +5,9 @@
 int x = 0;
 int y = 0;
 
-bool moving()
+PlayerCtrl* PlayerCtrl::g_pInstance = 0;
+
+bool PlayerCtrl::moving()
 {
 	SDL_Event event;
 
