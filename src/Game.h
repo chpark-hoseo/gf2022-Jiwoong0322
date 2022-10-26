@@ -18,11 +18,6 @@ public:
 private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	/*SDL_Texture* m_pTexture;*/
-	// 원본 사각형
-	SDL_Rect m_sourceRectangle;
-	// 대상 사각형
-	SDL_Rect m_destinationRectangle;
 	int m_currentFrame;
 	bool m_bRunning = false;
 };

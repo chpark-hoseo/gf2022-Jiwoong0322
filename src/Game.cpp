@@ -1,6 +1,10 @@
 #include "Game.h"
 #include "TextureManager.h"
+#include "PlayerCtrl.h"
 #include <SDL2/SDL_image.h>
+
+typedef TextureManager TheTextureManager;
+typedef PlayerCtrl ThePlayerCtrl;
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
@@ -16,7 +20,7 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 			if (m_pRenderer != 0)
 			{
-				SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
+				SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 			}
 			else
 			{
@@ -34,31 +38,26 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 	}
 
 	// TextureManager.cpp에 있는 load함수를 호출.
-	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+	if (!TheTextureManager::Instance()->load("assets/Background.png", "Background", m_pRenderer))
 	{
 		return false;
 	}
 
-	// 실습부분
-	// 원본상자(m_sourceRectangle)의 너비/높이 설정
-	m_sourceRectangle.w = 128;
-	m_sourceRectangle.h = 82;
 
-	// 이 코드는 파일 전체를 가져와서 너비/높이 설정을 해도 전체사진이 나와버림
-	// SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+	if (!TheTextureManager::Instance()->load("assets/Idle.png", "Idle", m_pRenderer))
+	{
+		return false;
+	}
 
-	// 원본상자의 위치 설정
-	m_sourceRectangle.x = 0;
-	m_sourceRectangle.y = 0;
+	if (!TheTextureManager::Instance()->load("assets/Jump.png", "Jump", m_pRenderer))
+	{
+		return false;
+	}
 
-	// 대상 상자(m_destinationRectangle)의 너비/높이 설정
-	m_destinationRectangle.w = m_sourceRectangle.w;
-	m_destinationRectangle.h = m_sourceRectangle.h;
-
-	// 대상상자의 위치 설정
-	m_destinationRectangle.x = 0;
-	m_destinationRectangle.y = 0;
-	
+	if (!TheTextureManager::Instance()->load("assets/Fall.png", "Fall", m_pRenderer))
+	{
+		return false;
+	}
 
 	m_bRunning = true;
 
@@ -67,16 +66,22 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
 void Game::update()
 {
-	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+	m_currentFrame = ((SDL_GetTicks() / 100) % 11);
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 
-	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+	TheTextureManager::Instance()->draw("Background", 0, 0, 640, 480, m_pRenderer);
 
-	TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
+	//TheTextureManager::Instance()->draw("Fall", 0, 0, 32, 32, m_pRenderer);
+
+	//TheTextureManager::Instance()->drawchange("Jump", 100, 100, 32, 32, 64, 64, m_pRenderer);
+
+	//TheTextureManager::Instance()->drawFrame("Idle", 50, 150, 32, 32, 0, m_currentFrame, m_pRenderer);
+
+	TheTextureManager::Instance()->drawchangeFrame("Idle", 50, 416, 32, 32, 64, 64, 0, m_currentFrame, m_pRenderer);
 
 	SDL_RenderPresent(m_pRenderer);
 }
@@ -97,6 +102,24 @@ void Game::handleEvents()
 			m_bRunning = false;
 			break;
 		default:
+			break;
+
+		case SDL_KEYDOWN:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_LEFT: // 왼쪽키
+				x--;
+				break;
+			case SDLK_RIGHT: // 오른쪽키
+				x++;
+				break;
+			case SDLK_UP: // 위쪽키
+				y--;
+				break;
+			case SDLK_DOWN: // 아래쪽키
+				y++;
+				break;
+			}
 			break;
 		}
 	}
