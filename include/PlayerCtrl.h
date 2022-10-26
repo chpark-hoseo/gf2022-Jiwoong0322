@@ -17,6 +17,8 @@ public:
 		return g_pInstance;
 	}
 
+	int PlayerX = 0;
+	int PlayerY = 0;
 	bool moving();
 
 

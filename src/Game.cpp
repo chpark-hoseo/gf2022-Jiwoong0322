@@ -6,9 +6,11 @@
 typedef TextureManager TheTextureManager;
 typedef PlayerCtrl ThePlayerCtrl;
 
+// 플레이어 좌표
 int PlayerX = 50;
 int PlayerY = 416;
 
+// 이동 스프라이트 좌표
 int DejavuX = 0;
 int DejavuY = 0;
 
@@ -46,23 +48,23 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 	}
 
 	// TextureManager.cpp에 있는 load함수를 호출.
-	if (!TheTextureManager::Instance()->load("assets/Background.png", "Background", m_pRenderer))
+	if (!TheTextureManager::Instance()->load("assets/Background.png", "Background", m_pRenderer)) // 배경
 	{
 		return false;
 	}
 
 
-	if (!TheTextureManager::Instance()->load("assets/Idle.png", "Idle", m_pRenderer))
+	if (!TheTextureManager::Instance()->load("assets/Idle.png", "Idle", m_pRenderer)) // 플레이어 기본상태
 	{
 		return false;
 	}
 
-	if (!TheTextureManager::Instance()->load("assets/Jump.png", "Jump", m_pRenderer))
+	if (!TheTextureManager::Instance()->load("assets/Jump.png", "Jump", m_pRenderer)) // 플레이어 점프
 	{
 		return false;
 	}
 
-	if (!TheTextureManager::Instance()->load("assets/Fall.png", "Fall", m_pRenderer))
+	if (!TheTextureManager::Instance()->load("assets/Fall.png", "Fall", m_pRenderer)) // 플레이어 낙하
 	{
 		return false;
 	}
@@ -76,45 +78,52 @@ void Game::update()
 {
 	m_currentFrame = ((SDL_GetTicks() / 100) % 11);
 
+	// 만약 이동 스프라이트의 X좌표가 608보다 작거나 같고 Left가 false라면
 	if (DejavuX <= 608 && Left == false)
 	{
-		DejavuX++;
+		DejavuX++; // X좌표를 증가
 		SDL_Delay(10);
-
+		
+		// 만약 X좌표가 608과 같다면
 		if (DejavuX == 608)
 		{
-			Left = true;
-			std::cout << "1" << std::endl;
+			Left = true; // Left를 true로 바꿈
+			std::cout << "1" << std::endl; // 1을 출력
 		}
 	}
 
+	// 만약 이동 스프라이트의 X좌표가 0보다 크거나 같고 Left가 true라면
 	if (DejavuX >= 0 && Left == true)
 	{
-		DejavuX--;
+		DejavuX--; // X좌표를 감소
 		SDL_Delay(10);
+
+		// 만약 X좌표가 0과 같다면
 		if (DejavuX == 0)
 		{
-			Left = false;
-			std::cout << "0" << std::endl;
+			Left = false; // Left를 false로 바꿈
+			std::cout << "0" << std::endl; // 0을 출력
 		}
 	}
-	std::cout << DejavuX << std::endl;
-	std::cout << Left << std::endl;
+
+	// X좌표와 Left의 상태를 확인하기 위한 명령
+	std::cout << DejavuX << std::endl; // X좌표
+	std::cout << Left << std::endl; // Left상태
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 
-	TheTextureManager::Instance()->draw("Background", 0, 0, 640, 480, m_pRenderer);
+	TheTextureManager::Instance()->draw("Background", 0, 0, 640, 480, m_pRenderer); // 배경 이미지
 
-	TheTextureManager::Instance()->draw("Fall", DejavuX, DejavuY, 32, 32, m_pRenderer);
+	TheTextureManager::Instance()->draw("Fall", DejavuX, DejavuY, 32, 32, m_pRenderer); // 낙하 이미지
 
-	TheTextureManager::Instance()->drawchange("Jump", 100, 100, 32, 32, 64, 64, m_pRenderer);
+	TheTextureManager::Instance()->drawchange("Jump", 100, 100, 32, 32, 64, 64, m_pRenderer); // 점프 이미지(크기확대)
 
-	TheTextureManager::Instance()->drawFrame("Idle", 50, 150, 32, 32, 0, m_currentFrame, m_pRenderer);
+	TheTextureManager::Instance()->drawFrame("Idle", 50, 150, 32, 32, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지
 
-	TheTextureManager::Instance()->drawchangeFrame("Idle", PlayerX, PlayerY, 32, 32, 64, 64, 0, m_currentFrame, m_pRenderer);
+	TheTextureManager::Instance()->drawchangeFrame("Idle", PlayerX, PlayerY, 32, 32, 64, 64, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지(크기 확대)
 
 	SDL_RenderPresent(m_pRenderer);
 }
@@ -137,21 +146,22 @@ void Game::handleEvents()
 		default:
 			break;
 
-		case SDL_KEYDOWN:
+		case SDL_KEYDOWN: // 키보드 입력이 감지되었을 때
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_LEFT: // 왼쪽키
-				PlayerX -= 3;
+				PlayerX -= 3; // 플에이어의 X좌표값을 3만큼 감소
 				break;
 			case SDLK_RIGHT: // 오른쪽키
-				PlayerX += 3;
+				PlayerX += 3; // 플레이어의 X좌표값을 3만큼 증가
 				break;
 			case SDLK_UP: // 위쪽키
-				PlayerY -= 3;
+				PlayerY -= 3; // 플에이어의 Y좌표값을 3만큼 갑소
 				break;
 			case SDLK_DOWN: // 아래쪽키
-				PlayerY += 3;
+				PlayerY += 3; // 플레이어의 Y좌표값을 3만큼 증가
 				break;
+			//case SDLK_SPACE: // 점프
 			}
 			break;
 		}
