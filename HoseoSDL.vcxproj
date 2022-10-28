@@ -142,12 +142,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\GameObject.cpp" />
+    <ClCompile Include="include\Monster.cpp" />
+    <ClCompile Include="include\Player.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\main.h" />
+    <ClInclude Include="include\Monster.h" />
+    <ClInclude Include="include\Player.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>

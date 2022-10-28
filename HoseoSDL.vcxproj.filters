@@ -24,16 +24,34 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="include\GameObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Monster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\main.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game.h">
-      <Filter>소스 파일</Filter>
+    <ClInclude Include="include\Player.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Monster.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,6 +11,8 @@ public:
 		{
 			s_pInstance = new TextureManager();
 		}
+
+		return s_pInstance;
 	}
 
 	bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
