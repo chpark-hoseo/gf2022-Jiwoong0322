@@ -1,9 +1,9 @@
 #include "Monster.h"
 #include <iostream>
 
-void Monster::load(int x, int y, int width, int height, int moveSpeed, /*int currentRow, int currentFrame,*/ std::string textureID)
+void Monster::load(int x, int y, int width, int height, int moveSpeed, std::string textureID)
 {
-	GameObject::load(x, y, width, height, moveSpeed, /*currentRow, currentFrame,*/ textureID);
+	GameObject::load(x, y, width, height, moveSpeed, textureID);
 }
 
 void Monster::draw(SDL_Renderer* pRenderer)

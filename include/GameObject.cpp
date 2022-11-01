@@ -3,7 +3,7 @@
 
 typedef TextureManager TheTextureManager;
 
-void GameObject::load(int x, int y, int width, int height, int moveSpeed, /*int currentRow, int currentFrame,*/ std::string textureID)
+void GameObject::load(int x, int y, int width, int height, int moveSpeed, std::string textureID)
 {
 	m_x = x;
 	m_y = y;
@@ -30,8 +30,6 @@ void GameObject::drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRend
 		->drawFrame(m_textureID,
 			m_x, m_y,
 			m_width, m_height,
-			//m_currentRow,
-			//m_currentFrame,
 			currentRow,
 			currentFrame,
 			pRenderer);
