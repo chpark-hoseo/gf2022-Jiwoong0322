@@ -1,22 +1,23 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "PlayerCtrl.h"
+#include "GameObject.h"
 #include <SDL2/SDL_image.h>
 
 typedef TextureManager TheTextureManager;
 typedef PlayerCtrl ThePlayerCtrl;
 
-// 플레이어 좌표
-int PlayerX = 50;
-int PlayerY = 416;
-
-// 이동 스프라이트 좌표
-int DejavuX = 0;
-int DejavuY = 0;
+//// 플레이어 좌표
+//int PlayerX = 50;
+//int PlayerY = 416;
+//
+//// 이동 스프라이트 좌표
+//int DejavuX = 0;
+//int DejavuY = 0;
 
 bool Left = false;
 
-bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
+bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
@@ -69,6 +70,8 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 		return false;
 	}
 
+	m_player.load(100, 100, 64, 64, 4, "Idle");
+
 	m_bRunning = true;
 
 	return true;
@@ -77,53 +80,23 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 void Game::update()
 {
 	m_currentFrame = ((SDL_GetTicks() / 100) % 11);
-
-	// 만약 이동 스프라이트의 X좌표가 608보다 작거나 같고 Left가 false라면
-	if (DejavuX <= 608 && Left == false)
-	{
-		DejavuX++; // X좌표를 증가
-		SDL_Delay(10);
-		
-		// 만약 X좌표가 608과 같다면
-		if (DejavuX == 608)
-		{
-			Left = true; // Left를 true로 바꿈
-			std::cout << "1" << std::endl; // 1을 출력
-		}
-	}
-
-	// 만약 이동 스프라이트의 X좌표가 0보다 크거나 같고 Left가 true라면
-	if (DejavuX >= 0 && Left == true)
-	{
-		DejavuX--; // X좌표를 감소
-		SDL_Delay(10);
-
-		// 만약 X좌표가 0과 같다면
-		if (DejavuX == 0)
-		{
-			Left = false; // Left를 false로 바꿈
-			std::cout << "0" << std::endl; // 0을 출력
-		}
-	}
-
-	// X좌표와 Left의 상태를 확인하기 위한 명령
-	std::cout << DejavuX << std::endl; // X좌표
-	std::cout << Left << std::endl; // Left상태
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 
-	TheTextureManager::Instance()->draw("Background", 0, 0, 640, 480, m_pRenderer); // 배경 이미지
+	//TheTextureManager::Instance()->draw("Background", 0, 0, 640, 480, m_pRenderer); // 배경 이미지
 
-	TheTextureManager::Instance()->draw("Fall", DejavuX, DejavuY, 32, 32, m_pRenderer); // 낙하 이미지
+	//TheTextureManager::Instance()->draw("Fall", DejavuX, DejavuY, 32, 32, m_pRenderer); // 낙하 이미지
 
-	TheTextureManager::Instance()->drawchange("Jump", 100, 100, 32, 32, 64, 64, m_pRenderer); // 점프 이미지(크기확대)
+	//TheTextureManager::Instance()->drawchange("Jump", 100, 100, 32, 32, 64, 64, m_pRenderer); // 점프 이미지(크기확대)
 
-	TheTextureManager::Instance()->drawFrame("Idle", 50, 150, 32, 32, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지
+	//TheTextureManager::Instance()->drawFrame("Idle", 50, 150, 32, 32, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지
 
-	TheTextureManager::Instance()->drawchangeFrame("Idle", PlayerX, PlayerY, 32, 32, 64, 64, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지(크기 확대)
+	//TheTextureManager::Instance()->drawchangeFrame("Idle", PlayerX, PlayerY, 32, 32, 64, 64, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지(크기 확대)
+
+	m_player.drawFrame(0, m_currentFrame, m_pRenderer);
 
 	SDL_RenderPresent(m_pRenderer);
 }
