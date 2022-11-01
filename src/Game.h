@@ -22,8 +22,13 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	GameObject m_go;
+	GameObject m_background;
 	Player m_player;
 	Monster m_monster;
+	Monster m_test;
+	Monster m_test2;
+	Monster m_test3;
 	int m_currentFrame;
+	int m_runFrame;
 	bool m_bRunning = false;
 };

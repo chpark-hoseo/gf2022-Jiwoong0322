@@ -10,17 +10,22 @@ void Player::draw(SDL_Renderer* pRenderer)
 	GameObject::draw(pRenderer);
 }
 
+void Player::drawChange(int dwidth, int dheight, SDL_Renderer* pRenderer)
+{
+	GameObject::drawChange(dwidth, dheight, pRenderer);
+}
+
 void Player::drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRenderer)
 {
 	GameObject::drawFrame(currentRow, currentFrame, pRenderer);
 }
 
-void Player::update()
+void Player::drawChangeFrame(int dwidth, int dheight, int currentRow, int currentFrame, SDL_Renderer* pRenderer)
 {
-	GameObject::update();
+	GameObject::drawChangeFrame(dwidth, dheight, currentRow, currentFrame, pRenderer);
 }
 
-void Player::clean()
+void Player::update()
 {
-
+	//GameObject::update();
 }
