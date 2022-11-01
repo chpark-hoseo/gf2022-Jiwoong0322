@@ -4,7 +4,7 @@
 
 typedef TextureManager TheTextureManager;
 
-bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
+bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
@@ -40,9 +40,23 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 	{
 		return false;
 	}
+
+	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "monster", m_pRenderer))
+	{
+		return false;
+	}
+
+	//m_go.load(200, 200, 128, 82, 1, "animate");
+	//m_player.load(300, 300, 128, 82, 1, "animate");
+	m_monster.load(100, 100, 128, 82, 10, "monster");
+	m_monster2.load(200, 200, 128, 82, 1, "monster"); // Game.h에 Monster m_monster2를 추가하여 작성한 Monster::load함수호출. 정상작동. m_monster로만 몬스터 객체 2개를 만들 수 있을까?
 	
-	m_go.load(200, 200, 128, 82, "animate");
-	m_player.load(300, 300, 128, 82, "animate");
+	//m_monster.load(200, 200, 128, 82, 1, "animate"); // textureID를 다르게 해서 생성해본 함수호출. 위의 m_monster.load를 덮어씌우기 때문에 실패
+
+	//Monster c_monster(m_monster); // 복사생성자. 지역변수가 아닌 전역변수로 생성해보려했으나 실패.
+	//c_monster.load(200, 200, 128, 82, 1, "monster"); // 복사생성자로 작성한 함수호출. 복사생성자를 지역변수로 작성하면 오류발생이 안나기는 함. 하지만 다른 함수에서 사용을 못함.
+	// 
+	//m_monster.load(100, 100, 128, 82, 4, 0, m_currentFrame, "monster"); // Monster::load 함수에 currentRow와 currentFrame을 넣어 프레임 변경을 가능하게 했을 때의 실험용 코드.
 
 	m_bRunning = true;
 
@@ -55,6 +69,8 @@ void Game::update()
 
 	m_go.update();
 	m_player.update();
+	m_monster.update();
+	m_monster2.update(); // m_monster2의 Monster::update 함수호출
 }
 
 void Game::render()
@@ -65,8 +81,13 @@ void Game::render()
 
 	//TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
 
-	m_go.draw(m_pRenderer);
-	m_player.draw(m_pRenderer);
+	//m_go.draw(m_pRenderer);
+	//m_player.draw(m_pRenderer);
+	m_monster.drawFrame(0, m_currentFrame, m_pRenderer);
+	m_monster2.drawFrame(0, m_currentFrame, m_pRenderer); // m_monster2의 Monster::drawFrame 함수호출
+	
+	//c_monster.drawFrame(0, m_currentFrame, m_pRenderer); // 복사생성자가 전역변수로 생성되지않아 작동되지않음
+	//m_monster.drawFrame(m_pRenderer); // GameObject::load 함수에 currentRow와 currentFrame을 넣어서 프레임 변경을 가능하게 했을 때의 실험용 코드
 
 	SDL_RenderPresent(m_pRenderer);
 }
