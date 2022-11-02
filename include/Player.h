@@ -10,6 +10,7 @@ public:
 	void drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRenderer);
 	void drawChangeFrame(int dwidth, int dheight, int currentRow, int currentFrame, SDL_Renderer* pRenderer);
 	void update();
+	void setXY(int x, int y) { m_x = x; m_y = y; }
 	void clean() {};
 
 private:

@@ -166,7 +166,7 @@ void Game::handleEvents()
 			//case SDLK_SPACE: // 점프
 			}
 			break;
-		}
+		}m_player.setXY(PlayerX, PlayerY); // 위의 case SDL_KEYDOWN안에 넣으면 이미지 이동이 안되다 다른 키를 누르면 바뀐값만큼 순간이동을 함. 여기에 놓으면 정상이동을 함. 왜?
 	}
 }
 
