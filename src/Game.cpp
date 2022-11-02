@@ -143,7 +143,7 @@ void Game::handleEvents()
 			break;
 
 		// 현재 GameObject, Player, Monster 클래스를 추가하면서 값을 바뀌는데 이미지이동은 안되는 상황 
-		// 원인은 PlayerX와 PlayerY가 init에서 load할 떄 한번 사용되고 update와 render에서는 GameObject, Player, Monster에 있는 m_x, m_y를 사용하기 때문으로 보임,
+		// 원인은 PlayerX와 PlayerY가 init에서 load할 떄 한번 사용되고 update와 render에서는 GameObj ect, Player, Monster에 있는 m_x, m_y를 사용하기 때문으로 보임,
 		case SDL_KEYDOWN: // 키보드 입력이 감지되었을 때
 			switch (event.key.keysym.sym)
 			{
@@ -164,9 +164,12 @@ void Game::handleEvents()
 				std::cout << PlayerY << std::endl; // 바뀐 Y값을 출력
 				break;
 			//case SDLK_SPACE: // 점프
+			default:
+				break;
 			}
+			m_player.setXY(PlayerX, PlayerY); // 위의 case SDL_KEYDOWN안에 넣으면 이미지 이동이 안되다 다른 키를 누르면 바뀐값만큼 순간이동을 함. 여기에 놓으면 정상이동을 함. 왜?
 			break;
-		}m_player.setXY(PlayerX, PlayerY); // 위의 case SDL_KEYDOWN안에 넣으면 이미지 이동이 안되다 다른 키를 누르면 바뀐값만큼 순간이동을 함. 여기에 놓으면 정상이동을 함. 왜?
+		}
 	}
 }
 
