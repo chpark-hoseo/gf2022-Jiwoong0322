@@ -2,7 +2,8 @@
 #include <main.h>
 #include <iostream>
 
-class GameObject {
+class GameObject
+{
 public:
 	// 함수호출 인수에 moveSpeed를 추가. 이동속도 변경을 가능하게 함.
 	// load함수 안에 currentRow와 currentFrame을 넣어도 이미지가 움직이지 않음. 왜?
@@ -15,13 +16,13 @@ public:
 	 init과 달리 Game에 있는 render는 main에서 update, handleEvents과 같이 while문 안에서 계속해서 호출되기 때문에 변화가 있음.
 	 render에서 drawFrame을 호출할 때 사용한 m_currentFrame은 Game안에서 사용되는 변수이므로 GameObject안에 있는 m_currentFrame을 가져오지 않음.
 	 */
-	void load(int x, int y, int width, int height, int moveSpeed, std::string textureID);
-
-	void draw(SDL_Renderer* pRenderer);
-	void drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRenderer); // 함수호출 인수에 currentRow, currentFrame을 추가. 프레임 변경을 가능하게 함.
-	void update();
-
-	void clean();
+	
+	// 다형성을 갖추기 위해 부모클래스인 GameObject에 virtual추가
+	virtual void load(int x, int y, int width, int height, int moveSpeed, std::string textureID);
+	virtual void draw(SDL_Renderer* pRenderer);
+	virtual void drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRenderer); // 함수호출 인수에 currentRow, currentFrame을 추가. 프레임 변경을 가능하게 함.
+	virtual void update();
+	virtual void clean() {};
 	
 private:
 	bool Left = false;

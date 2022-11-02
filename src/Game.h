@@ -1,5 +1,6 @@
 #pragma once
 #include <main.h>
+#include <vector>
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "Player.h"
@@ -7,6 +8,7 @@
  
 class Game
 {
+	std::vector<GameObject*> m_gameObjects; // 부모 클래스인 GameObject의 주소를 받아 멤버변수로 선언
 public:
 	Game() { }
 	~Game() { }
@@ -21,10 +23,6 @@ public:
 private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	GameObject m_go;
-	Player m_player;
-	Monster m_monster;
-	Monster m_monster2;
 	int m_currentFrame;
 	bool m_bRunning = false;
 };
