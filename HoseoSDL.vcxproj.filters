@@ -50,13 +50,13 @@
     <ClInclude Include="src\Game.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="include\GameObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="include\Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Monster.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 void Player::load(int x, int y, int width, int height, int moveSpeed, std::string textureID)
 {

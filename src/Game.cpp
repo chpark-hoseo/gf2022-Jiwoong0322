@@ -75,12 +75,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 		return false;
 	}
 
-	m_background.load(0, 0, 640, 480, 0, "Background");
-	m_test.load(100, 150, 32, 32, 1, "Jump");
-	m_test2.load(200, 200, 32, 32, 3, "Fall");
-	m_test3.load(300, 300, 32, 32, 6, "Run");
-	m_player.load(PlayerX, PlayerY, 32, 32, 4, "Idle");
-	m_monster.load(50, 50, 32, 32, 4, "Idle");
+	GameObject* m_go = new GameObject();
+	GameObject* m_background = new GameObject();
+	GameObject* m_player = new Player();
+	
+
+	m_go->load(100, 100, 32, 32, 4, "Idle");
+	m_background->load(0, 0, 640, 480, 0, "Background");
+	m_player->load(300, 300, 32, 32, 4, "Run");
+	m_gameObjects.push_back(m_background);
+	m_gameObjects.push_back(m_go);
+	m_gameObjects.push_back(m_player);
 
 	m_bRunning = true;
 
@@ -92,34 +97,20 @@ void Game::update()
 	m_currentFrame = ((SDL_GetTicks() / 100) % 11);
 	m_runFrame = ((SDL_GetTicks() / 100) % 12);
 
-	m_test.update();
-	m_test2.update();
-	m_test3.update();
-
-	m_player.update();
-	m_monster.update();
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
+	}
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 
-	//TheTextureManager::Instance()->draw("Background", 0, 0, 640, 480, m_pRenderer); // 배경 이미지
-
-	//TheTextureManager::Instance()->draw("Fall", DejavuX, DejavuY, 32, 32, m_pRenderer); // 낙하 이미지
-
-	//TheTextureManager::Instance()->drawChange("Jump", 100, 100, 32, 32, 64, 64, m_pRenderer); // 점프 이미지(크기확대)
-
-	//TheTextureManager::Instance()->drawFrame("Idle", 50, 150, 32, 32, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지
-
-	//TheTextureManager::Instance()->drawChangeFrame("Idle", PlayerX, PlayerY, 32, 32, 64, 64, 0, m_currentFrame, m_pRenderer); // 플레이어 기본 이미지(크기 확대)
-
-	m_background.draw(m_pRenderer);
-	m_test.draw(m_pRenderer);
-	m_test2.drawChange(64, 64, m_pRenderer);
-	m_test3.drawChangeFrame(64, 64, 0, m_runFrame, m_pRenderer);
-	m_player.drawChangeFrame(64, 64, 0, m_currentFrame, m_pRenderer);
-	m_monster.drawChangeFrame(64, 64, 0, m_currentFrame, m_pRenderer);
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->drawFrame(0, m_currentFrame, m_pRenderer);
+	}
 
 	SDL_RenderPresent(m_pRenderer);
 }
