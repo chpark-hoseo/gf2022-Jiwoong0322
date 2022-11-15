@@ -5,6 +5,7 @@
 class GameObject {
 public:
 	// 다형성을 갖추기 위해 부모클래스인 GameObject에 virtual추가
+	// virtual을 추가하면 오류가 발생함
 	virtual void load(int x, int y, int width, int height, int moveSpeed, std::string textureID);
 	virtual void draw(SDL_Renderer* pRenderer);
 	virtual void drawChange(int dwidht, int dheight, SDL_Renderer* pRenderer);
