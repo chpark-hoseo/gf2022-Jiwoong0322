@@ -29,3 +29,5 @@ private:
 
 	static TextureManager* s_pInstance;
 };
+
+typedef TextureManager TheTextureManager;

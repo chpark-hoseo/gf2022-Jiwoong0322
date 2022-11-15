@@ -1,44 +1,17 @@
-#include "Player.h"
 #include <iostream>
+#include "Player.h"
 
-void Player::load(int x, int y, int width, int height, int moveSpeed, std::string textureID)
-{
-	GameObject::load(x, y, width, height, moveSpeed, textureID);
-}
+Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
-void Player::draw(SDL_Renderer* pRenderer)
+void Player::draw()
 {
-	GameObject::draw(pRenderer);
-}
-
-void Player::drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRenderer)
-{
-	GameObject::drawFrame(currentRow, currentFrame, pRenderer);
+	SDLGameObject::draw();
 }
 
 void Player::update()
 {
-	//if ((m_x >= 0 || m_x < 0) && PLeft == false)
-	//{
-	//	m_x += m_moveSpeed * 1;
-
-	//	if (m_x >= 356 && PLeft == false)
-	//	{
-	//		PLeft = true;
-	//	}
-	//}
-	//else if ((m_x <= 356 || m_x > 356) && PLeft == true)
-	//{
-	//	m_x -= m_moveSpeed * 1;
-
-	//	if (m_x <= 0 && PLeft == true)
-	//	{
-	//		PLeft = false;
-	//	}
-	//}
-
-	//std::cout << m_x << std::endl;
-	//std::cout << PLeft << std::endl;
-
-	GameObject::update();
+	m_x -= 1;
+	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 }
+
+void Player::clean() {}

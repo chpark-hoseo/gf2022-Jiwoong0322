@@ -2,10 +2,14 @@
 #include <main.h>
 #include <vector>
 #include "TextureManager.h"
+#include "LoaderParams.h"
 #include "GameObject.h"
+#include "SDLGameObject.h"
 #include "Player.h"
-#include "Monster.h"
- 
+#include "Enemy.h"
+
+
+
 class Game
 {
 	std::vector<GameObject*> m_gameObjects; // 부모 클래스인 GameObject의 주소를 받아 멤버변수로 선언
