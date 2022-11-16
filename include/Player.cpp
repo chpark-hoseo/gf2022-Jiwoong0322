@@ -11,7 +11,7 @@ void Player::draw()
 
 void Player::update()
 {
-	SDLGameObject::update();
+	m_position += Vector2D(-1, 0);
 	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 }
 
