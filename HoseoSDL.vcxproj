@@ -145,6 +145,7 @@
     <ClCompile Include="include\Enemy.cpp" />
     <ClCompile Include="include\Player.cpp" />
     <ClCompile Include="include\SDLGameObject.cpp" />
+    <ClCompile Include="include\Vector2D.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SDLGameObject.h" />
+    <ClInclude Include="include\Vector2D.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
