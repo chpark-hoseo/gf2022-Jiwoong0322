@@ -15,16 +15,16 @@ private:
 	bool Left = false;
 
 protected:
-	std::string m_textureID;
+	//std::string m_textureID;
 
 	GameObject(const LoaderParams* pParams) { }
 
-	int m_x;
+	/*int m_x;
 	int m_y;
 	int m_width;
 	int m_height;
 	int m_moveSpeed;
 
 	int m_currentFrame;
-	int m_currentRow;
+	int m_currentRow;*/
 };

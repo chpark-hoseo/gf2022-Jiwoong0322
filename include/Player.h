@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDLGameObject.h"
 
+
 class Player : public SDLGameObject {
 public:
     // Player의 부모 클래스인 GameObject에서 이미 virtual을 사용하여 다형성을 가짐.
