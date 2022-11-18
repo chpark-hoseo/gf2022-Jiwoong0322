@@ -85,7 +85,7 @@ void Game::render()
 		m_gameObjects[i]->draw();
 
 		// m_gameObjects[i]의 값을 측정하기 위한 코드.
-		std::cout << m_gameObjects[i] << std::endl;
+		/*std::cout << m_gameObjects[i] << std::endl;*/
 	}
 
 	// m_gameObjects.size()의 값을 측정하기 위한 코드. m_gameObjects에 저장된 요소는 2개이므로 2가 출력됨.
