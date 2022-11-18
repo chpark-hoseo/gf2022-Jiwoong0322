@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="include\Enemy.cpp" />
+    <ClCompile Include="include\InputHandler.cpp" />
     <ClCompile Include="include\Player.cpp" />
     <ClCompile Include="include\SDLGameObject.cpp" />
     <ClCompile Include="include\Vector2D.cpp" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\LoaderParams.h" />
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\Enemy.h" />

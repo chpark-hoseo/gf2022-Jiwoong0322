@@ -5,6 +5,7 @@
 #include "LoaderParams.h"
 #include "GameObject.h"
 #include "SDLGameObject.h"
+#include "InputHandler.h"
 #include "Player.h"
 #include "Enemy.h"
 
@@ -29,6 +30,7 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
+	void quit() { m_bRunning = false; }
 
 private:
 	Game() { }
