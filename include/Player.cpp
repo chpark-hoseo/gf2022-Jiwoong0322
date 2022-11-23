@@ -58,5 +58,6 @@ bool InputHandler::isKeyDown(SDL_Scancode key) {
 	}
 	return false;
 }
+// 실습완료
 
 void Player::clean() {}
