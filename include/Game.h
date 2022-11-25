@@ -2,10 +2,10 @@
 #include <main.h>
 #include <vector>
 #include "TextureManager.h"
+#include "InputHandler.h"
 #include "LoaderParams.h"
 #include "GameObject.h"
 #include "SDLGameObject.h"
-#include "InputHandler.h"
 #include "Player.h"
 #include "Enemy.h"
 
