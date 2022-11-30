@@ -11,8 +11,8 @@ public:
 	virtual void drawChange(int dwidht, int dheight, SDL_Renderer* pRenderer);
 	virtual void drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRenderer);
 	virtual void drawChangeFrame(int dwidth, int dheight, int currentRow, int currentFrame, SDL_Renderer* pRenderer);
-	virtual void update();
-	virtual void clean();
+	virtual void update() {}
+	virtual void clean() {}
 
 private:
 	bool Left = false;

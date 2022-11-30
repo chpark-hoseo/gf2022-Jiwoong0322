@@ -57,7 +57,7 @@ void GameObject::drawChangeFrame(int dwidth, int dheight, int currentRow, int cu
 			pRenderer);
 }
 
-void GameObject::update()
-{
-
-}
+//void GameObject::update()
+//{
+//
+//}

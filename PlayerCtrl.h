@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <main.h>
 #include <map>
 
 class PlayerCtrl
