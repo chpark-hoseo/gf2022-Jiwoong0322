@@ -1,32 +1,18 @@
 #include "Player.h"
 #include <iostream>
 
-void Player::load(int x, int y, int width, int height, int moveSpeed, std::string textureID)
-{
-	GameObject::load(x, y, width, height, moveSpeed, textureID);
-}
+Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
-void Player::draw(SDL_Renderer* pRenderer)
-{
-	GameObject::draw(pRenderer);
-}
 
-void Player::drawChange(int dwidth, int dheight, SDL_Renderer* pRenderer)
+void Player::draw()
 {
-	GameObject::drawChange(dwidth, dheight, pRenderer);
-}
-
-void Player::drawFrame(int currentRow, int currentFrame, SDL_Renderer* pRenderer)
-{
-	GameObject::drawFrame(currentRow, currentFrame, pRenderer);
-}
-
-void Player::drawChangeFrame(int dwidth, int dheight, int currentRow, int currentFrame, SDL_Renderer* pRenderer)
-{
-	GameObject::drawChangeFrame(dwidth, dheight, currentRow, currentFrame, pRenderer);
+	SDLGameObject::draw();
 }
 
 void Player::update()
 {
-	//GameObject::update();
+	m_x -= 1;
+	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 }
+
+void Player::clean() {}

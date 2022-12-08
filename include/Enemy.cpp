@@ -1,5 +1,6 @@
-#include "Monster.h"
 #include <iostream>
+#include "Enemy.h"
+
 
 Enemy::Enemy(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
