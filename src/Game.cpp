@@ -2,8 +2,8 @@
 #include <SDL2/SDL_image.h>
 
 Game* Game::s_pInstance = 0;
-int knifeX = 0;
-int knifeY = 0;
+int fireRate = 30;
+int knifeNum = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
@@ -56,20 +56,22 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	{
 		return false;
 	}
-	 
+
+	srand((unsigned int)time(NULL));
+
 	m_gameObjects.push_back(new Enemy(new LoaderParams(0, 0, 480, 640, "Background")));
 	m_gameObjects.push_back(new Enemy(new LoaderParams(0, 0, 480, 64, "Spawner")));
 	m_gameObjects2.push_back(new Player(new LoaderParams(0, 610, 32, 32, "Player")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(0, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(50, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(100, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(140, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(200, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(260, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(310, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(340, 0, 28, 48, "Knife")));
-	m_gameObjects3.push_back(new Enemy(new LoaderParams(380, 0, 28, 48, "Knife")));
-	
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
+
 
 	m_bRunning = true;
 
@@ -91,7 +93,7 @@ void Game::update()
 		// m_gameObjects[i]의 값을 측정하기 위한 코드. 정수값이 아닌 각 요소의 주소값이 출력됨
 		//std::cout << m_gameObjects[i] << std::endl;
 	}
-
+	
 	for (int i = 0; i < m_gameObjects3.size(); i++)
 	{
 		m_gameObjects3[i]->update();
@@ -121,14 +123,30 @@ void Game::render()
 	for (int i = 0; i != m_gameObjects2.size(); i++)
 	{
 		m_gameObjects2[i]->drawFrame();
-		// m_gameObjects[i]의 값을 측정하기 위한 코드.
-		/*std::cout << m_gameObjects[i] << std::endl;*/
 	}
 
-	for (int j = 0; j != m_gameObjects3.size(); j++)
-	{
-		m_gameObjects3[j]->draw();
-	}
+
+	
+	m_gameObjects3[(SDL_GetTicks() / 1000) % 9]->draw(); // 1초마다 다음그림을 그림
+	/*knifeNum += 1;*/
+	
+	//for (int  i = 0; i <= fireRate; i ++)
+	//{
+	//	std::cout << i << " " << fireRate <<  std::endl;
+	//	if (i == fireRate)
+	//	{
+	//		m_gameObjects3[knifeNum]->draw();
+	//		knifeNum += 1;
+	//		return;
+	//	}
+	//}
+
+	
+	/*std::cout << knifeNum << std::endl;*/
+	//for (int j = 0; j != m_gameObjects3.size(); j++)
+	//{
+	//	m_gameObjects3[j]->draw();
+	//}
 
 	// m_gameObjects.size()의 값을 측정하기 위한 코드. m_gameObjects에 저장된 요소는 2개이므로 2가 출력됨.
 	//std::cout << m_gameObjects.size() << std::endl;

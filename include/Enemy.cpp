@@ -26,9 +26,10 @@ void Enemy::update()
 	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 	if (fastTime >= 0)
 	{
-		fastTime += 0.01;
+		fastTime += 0.5;
 	}
-	else if (fastTime > 10)
+	
+	if (fastTime > 10)
 	{
 		fastTime = 0;
 		fallSpeed += 1;

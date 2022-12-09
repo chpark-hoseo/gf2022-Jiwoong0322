@@ -16,6 +16,8 @@ public:
     virtual void handleInput();
     virtual void clean();
 
+    Vector2D* p_Box;
+
 private:
     //bool PLeft = false;
 };
