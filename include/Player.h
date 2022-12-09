@@ -10,6 +10,8 @@ public:
     // 하지만 자식 클래스에서도 virtual을 사용하는이 관례임. (코드 이해를 수월하게 하기 위해서)
     Player(const LoaderParams* pParams);
     virtual void draw();
+    virtual void drawFrame();
+    /*virtual void drawChangeFrame();*/
     virtual void update();
     virtual void handleInput();
     virtual void clean();

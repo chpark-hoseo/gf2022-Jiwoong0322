@@ -10,6 +10,8 @@ public:
 	Vector2D m_velocity;
 	Vector2D m_acceleration;
 	virtual void draw();
+	virtual void drawFrame();
+	/*virtual void drawChangeFrame();*/
 	virtual void update();
 	virtual void clean() {}
 	virtual ~SDLGameObject() {}

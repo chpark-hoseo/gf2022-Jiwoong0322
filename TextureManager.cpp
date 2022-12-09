@@ -53,3 +53,20 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
+
+void TextureManager::drawChangeFrame(std::string id, int x, int y, int width, int height, int dwidth, int dheight, int currentRow, int currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip)
+{
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
+
+	srcRect.x = width * currentFrame;
+	srcRect.y = height * currentRow;
+	srcRect.w = width;
+	srcRect.h = height;
+	destRect.x = x;
+	destRect.y = y;
+	destRect.w = dwidth;
+	destRect.h = dheight;
+
+	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
+}

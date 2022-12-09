@@ -9,10 +9,15 @@ void Player::draw()
 	SDLGameObject::draw();
 }
 
+void Player::drawFrame()
+{
+	SDLGameObject::drawFrame();
+}
+
 void Player::update()
 {
 	handleInput();
-	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+	m_currentFrame = ((SDL_GetTicks() / 100) % 12);
 	SDLGameObject::update();
 }
 
@@ -26,14 +31,14 @@ void Player::handleInput()
 	{
 		m_velocity.setX(-2);
 	}
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
-	{
-		m_velocity.setY(-2);
-	}
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
-	{
-		m_velocity.setY(2);
-	}
+	//if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+	//{
+	//	m_velocity.setY(-2);
+	//}
+	//if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+	//{
+	//	m_velocity.setY(2);
+	//}
 }
 
 bool InputHandler::isKeyDown(SDL_Scancode key) {
@@ -58,6 +63,5 @@ bool InputHandler::isKeyDown(SDL_Scancode key) {
 	}
 	return false;
 }
-// 실습완료
 
 void Player::clean() {}

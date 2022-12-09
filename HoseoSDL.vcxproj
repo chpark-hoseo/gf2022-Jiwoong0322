@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="include\Enemy.cpp" />
     <ClCompile Include="include\InputHandler.cpp" />
+    <ClCompile Include="include\Objects.cpp" />
     <ClCompile Include="include\Player.cpp" />
     <ClCompile Include="include\SDLGameObject.cpp" />
     <ClCompile Include="include\Vector2D.cpp" />
@@ -158,10 +159,11 @@
     <ClInclude Include="include\LoaderParams.h" />
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\Enemy.h" />
+    <ClInclude Include="include\Objects.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SDLGameObject.h" />
+    <ClInclude Include="include\TextureManager.h" />
     <ClInclude Include="include\Vector2D.h" />
-    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

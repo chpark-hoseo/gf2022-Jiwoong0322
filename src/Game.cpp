@@ -2,6 +2,8 @@
 #include <SDL2/SDL_image.h>
 
 Game* Game::s_pInstance = 0;
+int knifeX = 0;
+int knifeY = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
@@ -35,18 +37,39 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	}
 
 	// TextureManager.cpp에 있는 load함수를 호출.
-	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+	if (!TheTextureManager::Instance()->load("assets/Background2.png", "Background", m_pRenderer))
 	{
 		return false;
 	}
 
-	if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "monster", m_pRenderer))
+	if (!TheTextureManager::Instance()->load("assets/Run.png", "Player", m_pRenderer))
 	{
 		return false;
 	}
 
-	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
-	m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 128, 82, "animate")));
+	if (!TheTextureManager::Instance()->load("assets/Knife2.png", "Knife", m_pRenderer))
+	{
+		return false;
+	}
+
+	if (!TheTextureManager::Instance()->load("assets/EnemySpawner.png", "Spawner", m_pRenderer))
+	{
+		return false;
+	}
+	 
+	m_gameObjects.push_back(new Enemy(new LoaderParams(0, 0, 480, 640, "Background")));
+	m_gameObjects.push_back(new Enemy(new LoaderParams(0, 0, 480, 64, "Spawner")));
+	m_gameObjects2.push_back(new Player(new LoaderParams(0, 610, 32, 32, "Player")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(0, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(50, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(100, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(140, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(200, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(260, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(310, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(340, 0, 28, 48, "Knife")));
+	m_gameObjects3.push_back(new Enemy(new LoaderParams(380, 0, 28, 48, "Knife")));
+	
 
 	m_bRunning = true;
 
@@ -60,13 +83,18 @@ void Game::update()
 	// for문을 사용하여 i값이 m_gameObjects.size()보다 작은 동안 m_gameObjects[i]의 update함수를 호출함
 	// for문의 특성상 i값이 m_gameObjects.size()보다 커지면 반복문이 종료되지만
 	// Game::update함수는 main.cpp에서 while문으로 계속해서 반복호출되고 있기 때문에 for문도 반복실행됨.
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	for (int i = 0; i < m_gameObjects2.size(); i++)
 	{
 		// m_gameObjects[i]의 update함수를 호출
-		m_gameObjects[i]->update();
+		m_gameObjects2[i]->update();
 
 		// m_gameObjects[i]의 값을 측정하기 위한 코드. 정수값이 아닌 각 요소의 주소값이 출력됨
 		//std::cout << m_gameObjects[i] << std::endl;
+	}
+
+	for (int i = 0; i < m_gameObjects3.size(); i++)
+	{
+		m_gameObjects3[i]->update();
 	}
 
 	// m_gameObjects.size()의 값을 측정하기 위한 코드. m_gameObjects에 저장된 요소는 2개이므로 2가 출력됨
@@ -80,12 +108,26 @@ void Game::render()
 	// for문을 사용하여 i값이 m_gameObjects.size()보다 작은 동안 m_gameObjects[i]의 특정 함수를 호출함
 	// for문의 특성상 i값이 m_gameObjects.size()보다 커지면 반복문이 종료되지만
 	// Game::render()는 main.cpp에서 while문으로 계속해서 반복호출되고 있기 때문에 for문도 반복실행됨.
-	for (int i = 0; i != m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
 
+	m_gameObjects[0]->draw();
+	m_gameObjects[1]->draw();
+	//for (int j = 0; j != m_gameObjects.size(); j++)
+	//{
+	//	m_gameObjects[j]->draw();
+
+	//	std::cout << j << std::endl;
+	//}
+
+	for (int i = 0; i != m_gameObjects2.size(); i++)
+	{
+		m_gameObjects2[i]->drawFrame();
 		// m_gameObjects[i]의 값을 측정하기 위한 코드.
 		/*std::cout << m_gameObjects[i] << std::endl;*/
+	}
+
+	for (int j = 0; j != m_gameObjects3.size(); j++)
+	{
+		m_gameObjects3[j]->draw();
 	}
 
 	// m_gameObjects.size()의 값을 측정하기 위한 코드. m_gameObjects에 저장된 요소는 2개이므로 2가 출력됨.
