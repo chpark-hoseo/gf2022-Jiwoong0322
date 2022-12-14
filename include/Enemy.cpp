@@ -40,6 +40,7 @@ void Enemy::update()
 	SDLGameObject::update();
 }
 
+// 낙하 가속도 설정
 void Enemy::fall()
 {
 	m_acceleration.setY(fallSpeed);
@@ -57,19 +58,25 @@ void Enemy::handleInput()
 	//	m_velocity.setY(2);(아래로 낙하)
 }
 
+// 칼의 minX값
 int Enemy::get_Xpos()
 {
 	return m_position.getX();
 }
+
+// 칼의 maxX값을 구하기 위한 요소
 int Enemy::get_XWidth()
 {
 	return Width;
 }
+
+// 칼의 minY값
 int Enemy::get_Ypos()
 {
 	return m_position.getY();
 }
 
+// 칼의 maxY값을 구하기 위한 요소
 int Enemy::get_height()
 {
 	return height;

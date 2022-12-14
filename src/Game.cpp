@@ -67,13 +67,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 		return false;
 	}
 
-	srand((unsigned int)time(NULL));
+	//srand((unsigned int)time(NULL));
 
 	m_gameObjects.push_back(new Objects(new LoaderParams(0, 0, 480, 640, "Background")));
 	m_gameObjects.push_back(new Objects(new LoaderParams(0, 0, 480, 64, "Spawner")));
 
+	// 플레이어 객체 생성
 	Player* player = new Player(new LoaderParams(0, GroundYPos, 32, 32, "Player"));
-
 	m_gameObjects2.push_back(player);
 
 	//m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, 0, 28, 48, "Knife")));
@@ -86,12 +86,15 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	//m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, -160, 28, 48, "Knife")));
 	//m_gameObjects3.push_back(new Enemy(new LoaderParams(rand() % 412, -180, 28, 48, "Knife")));
 
+	// 칼 객체 생성
 	Enemy* enemy = new Enemy(new LoaderParams(rand() % SWidth, -40, 28, 48, "Knife"));
 	m_gameObjects3.push_back(enemy);
 
+	// 플레이어와 칼의 좌표값을 전달받는 함수호출
 	TheColliderMng::Instance()->set_PlayerObj(player);
 	TheColliderMng::Instance()->set_Enemy(enemy);
 
+	// 칼을 소환시키기 위해 칼의 초기 객체 입력
 	TheSponMng::Instance()->setEnemyData(enemy);
 
 	// 칼 여러개 생성하기
@@ -108,18 +111,21 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
+	// 스폰매니저가 킬을 생성하면
 	if(TheSponMng::Instance()->Respon()!= NULL){
 
+		// 생성된 칼을 Enemy에 연결
 		Enemy* enemy = TheSponMng::Instance()->Respon();
 
-		m_gameObjects3.clear();
-		TheSponMng::Instance()->ResponXPos(rand() % SWidth);
-		m_gameObjects3.push_back(enemy);
+		m_gameObjects3.clear(); // 기존에 있던 칼을 제거
+		TheSponMng::Instance()->ResponXPos(rand() % SWidth); // 생성된 칼의 위치를 랜덤으로 설정
+		m_gameObjects3.push_back(enemy); // push_back을 해줌
 
-		TheSponMng::Instance()->setEnemyData(enemy);
+		TheSponMng::Instance()->setEnemyData(enemy); // 생성된 객체를 setEnemyData에 집어넣음
 	}
 	//printf("%d \n", m_gameObjects3.size());
 
+	// AABB_Coll을 호출
 	TheColliderMng::Instance()->AABB_Coll();
 
 	//m_currentFrame = ((SDL_GetTicks() / 100) % 6);

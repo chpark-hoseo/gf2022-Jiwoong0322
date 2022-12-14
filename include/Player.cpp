@@ -17,24 +17,29 @@ void Player::drawFrame()
 
 void Player::update()
 {
+	// Hp가 0보다 크면
 	if (Hp > 0) {
+		// IsColl이 false가 아니면
 		if (!IsColl) {
-			handleInput();
-			m_currentFrame = ((SDL_GetTicks() / 100) % 12);
+			handleInput(); // handleInput 호출
+			m_currentFrame = ((SDL_GetTicks()  / 100) % 12); // m_currentFrame 실행
 		}
+		// 그외에는
 		else {
-			m_velocity.setX(0);
-			delayCnt++;
+			m_velocity.setX(0); // 플레이어의 이동을 제한
+			delayCnt++; // 경직시간 증가
 
+			// 경직 시간이 최대경직시간보다 길면
 			if (delayCnt >= delayTime) {
-				IsColl = false;
+				IsColl = false; // IsColl을 false로 변경
 			}
 
 			//printf("%d\n", delayCnt);
 		}
 	}
+	// hp가 0보다 작아지면
 	else {
-		m_velocity.setX(0);
+		m_velocity.setX(0); // 플레이어의 이동을 제한
 	}
 
 	SDLGameObject::update();
@@ -44,16 +49,20 @@ void Player::handleInput()
 {
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
+		// 플레이어의 X좌표애 width를 더한만큼의 값이 ScreenWidth값 이상으로 진행하지 못하도록 막음
 		if (m_position.getX() + width >= TheGame::Instance()->ScreenWidth)
 			m_velocity.setX(0);
+		// 그외에는 이동 가능
 		else
 			m_velocity.setX(4);
 	}
 
 	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
+		// 플레이어의 x좌표값이 0보다 크면 이동가능하도록 함
 		if(m_position.getX() > 0)
 			m_velocity.setX(-4);
+		// 그외에는 이동 불가
 		else
 			m_velocity.setX(0);
 	}

@@ -22,6 +22,7 @@ void ColliderManager::set_Enemy(Enemy* enemy)
 	//printf("%d", enemy_Pos.Sword_MaxX);
 }
 
+// 플레이어와 칼의 좌표값 설정
 void ColliderManager::set_defaultData()
 {
 	// 플레이어의 좌표를 가져옴
@@ -41,21 +42,28 @@ void ColliderManager::set_defaultData()
 
 bool ColliderManager::AABB_Coll()
 {
+	// NULL이 아니면
 	if (enemy != NULL) {
 
+		// 캐릭터와 칼의 좌표값을 가져옴
 		set_defaultData();
 
+		// 플레이어와 칼의 x좌표값이 충돌하면
 		if (player_Pos.Player_maxX >= enemy_Pos.Sword_MinX &&
 			player_Pos.Player_minX <= enemy_Pos.Sword_MaxX) {
 
+			// 플레이어와 칼의 y좌표값이 충돌하면
 			if (player_Pos.Player_minY <= enemy_Pos.Sword_MaxY &&
 				player_Pos.Player_maxY >= enemy_Pos.Sword_MinY) {
 
+				// true를 반환함
 				player->set_IsColl(true);
 				return true;
 			}
 		}
+		// 그외에는
 		else {
+			// false를 반환함
 			player->set_IsColl(false);
 			return false;
 		}
