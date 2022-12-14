@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream> // C++ 클래스의 입출력을 위한 헤더파일
 #include <map> // C++ 클래스중 map클래스를 사용하기 위한 헤더파일
+#include <SDL2/SDL.h>
 
 class TextureManager
 {

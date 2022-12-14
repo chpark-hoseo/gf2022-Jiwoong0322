@@ -2,7 +2,9 @@
 #include "Game.h"
 #include "Enemy.h"
 
-Enemy::Enemy(const LoaderParams* pParams) : SDLGameObject(pParams) {}
+Enemy::Enemy(const LoaderParams* pParams) 
+	: SDLGameObject(pParams)
+{}
 
 void Enemy::draw()
 {
@@ -32,7 +34,7 @@ void Enemy::update()
 	if (fastTime > 10)
 	{
 		fastTime = 0;
-		fallSpeed += 1;
+		fallSpeed++;
 	}
 	/*std::cout << fastTime << std::endl;*/
 	SDLGameObject::update();
@@ -40,7 +42,7 @@ void Enemy::update()
 
 void Enemy::fall()
 {
-	m_velocity.setY(fallSpeed);
+	m_acceleration.setY(fallSpeed);
 }
 
 void Enemy::handleInput()
@@ -53,6 +55,24 @@ void Enemy::handleInput()
 	//m_velocity = (*vec - m_position) / 100;
 
 	//	m_velocity.setY(2);(¾Æ·¡·Î ³«ÇÏ)
+}
+
+int Enemy::get_Xpos()
+{
+	return m_position.getX();
+}
+int Enemy::get_XWidth()
+{
+	return Width;
+}
+int Enemy::get_Ypos()
+{
+	return m_position.getY();
+}
+
+int Enemy::get_height()
+{
+	return height;
 }
 
 void Enemy::clean() {}

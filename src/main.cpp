@@ -14,7 +14,10 @@ const int DELAY_TIME = 1000.0f / FPS;
 
 int main(int argc, char* argv[])
 {
-	if (TheGame::Instance()->init("Dodge", 100, 100, 480, 640, false))
+	if (TheGame::Instance()->init("Dodge",
+		100, 100,
+		TheGame::Instance()->ScreenWidth, TheGame::Instance()->ScreenHeight,
+		false))
 	{
 		Uint32 frameStart, frameTime;
 		while (TheGame::Instance()->running())

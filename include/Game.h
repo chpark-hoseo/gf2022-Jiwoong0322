@@ -1,16 +1,10 @@
 #pragma once
 #include <main.h>
-#include <cstdlib>
-#include <ctime>
 #include <vector>
-#include "TextureManager.h"
-#include "InputHandler.h"
-#include "LoaderParams.h"
 #include "GameObject.h"
-#include "SDLGameObject.h"
+
 #include "Player.h"
 #include "Enemy.h"
-#include "Objects.h"
 
 
 class Game
@@ -18,6 +12,7 @@ class Game
 	std::vector<GameObject*> m_gameObjects; // 부모 클래스인 GameObject의 주소를 받아 멤버변수로 선언
 	std::vector<GameObject*> m_gameObjects2;
 	std::vector<GameObject*> m_gameObjects3;
+
 public:
 	static Game* Instance() {
 		if (s_pInstance == 0)
@@ -37,14 +32,19 @@ public:
 	void clean();
 	void quit() { m_bRunning = false; }
 
+	const int ScreenWidth = 480;
+	const int ScreenHeight = 640;
+	const int GroundYPos = 610;
 private:
-	Game() { }
+	Game() = default;
 	static Game* s_pInstance; // 정적 멤버변수
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	int m_currentFrame;
 	bool m_bRunning = false;
+
+	const int SWidth = 412;
 };
 
 typedef Game TheGame;

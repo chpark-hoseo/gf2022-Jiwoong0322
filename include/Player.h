@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
 #include "SDLGameObject.h"
+#include "InputHandler.h"
 
 
 class Player : public SDLGameObject {
@@ -16,8 +16,27 @@ public:
     virtual void handleInput();
     virtual void clean();
 
+
+    // 플레이어의 좌표를 받아오는 코드
+    int get_XPos();
+    int get_XWidth();
+
+    int get_YPos();
+    int get_height();
+
+    // 플레이어가 충돌되었다는것을 알려줌
+    void set_IsColl(bool IsColl);
+
     Vector2D* p_Box;
 
 private:
+    bool IsColl;
+    int Hp = 3;
+
+    const int width = 32;
+    const int height = 32;
+
+    const int delayTime = 60;
+    int delayCnt = 0;
     //bool PLeft = false;
 };

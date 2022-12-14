@@ -142,17 +142,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\ColliderManager.cpp" />
     <ClCompile Include="include\Enemy.cpp" />
     <ClCompile Include="include\InputHandler.cpp" />
     <ClCompile Include="include\Objects.cpp" />
     <ClCompile Include="include\Player.cpp" />
     <ClCompile Include="include\SDLGameObject.cpp" />
+    <ClCompile Include="include\SponManager.cpp" />
     <ClCompile Include="include\Vector2D.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ColliderManager.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\InputHandler.h" />
@@ -162,6 +165,7 @@
     <ClInclude Include="include\Objects.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SDLGameObject.h" />
+    <ClInclude Include="include\SponManager.h" />
     <ClInclude Include="include\TextureManager.h" />
     <ClInclude Include="include\Vector2D.h" />
   </ItemGroup>
