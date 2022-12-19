@@ -25,13 +25,15 @@ void Player::update()
 			m_currentFrame = ((SDL_GetTicks()  / 100) % 12); // m_currentFrame 실행
 		}
 		// 그외에는
-		else {
+		else
+		{
 			m_velocity.setX(0); // 플레이어의 이동을 제한
 			delayCnt++; // 경직시간 증가
 
 			// 경직 시간이 최대경직시간보다 길면
 			if (delayCnt >= delayTime) {
 				IsColl = false; // IsColl을 false로 변경
+				delayCnt = 0;
 			}
 
 			//printf("%d\n", delayCnt);
@@ -123,8 +125,10 @@ int Player::get_height()
 void Player::set_IsColl(bool IsColl)
 {
 	this->IsColl = IsColl;
-	if(IsColl)
+	if (IsColl)
+	{
 		Hp--;
+	}
 
 	printf("%d \n", Hp);
 }

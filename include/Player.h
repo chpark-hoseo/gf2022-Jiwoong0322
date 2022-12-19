@@ -30,7 +30,7 @@ public:
     Vector2D* p_Box;
 
 private:
-    bool IsColl;
+    bool IsColl = false;
     int Hp = 3;
 
     const int width = 32;
